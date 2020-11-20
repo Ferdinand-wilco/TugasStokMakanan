@@ -125,13 +125,20 @@ def find_stok():
 	result = searching_by_nama(nama)
 	input("Tekan ENTER untuk kembali ke MENU")
 
+def return_code(nama):
+    searched_dict = {"nama":nama}
+    for code in data_stok:
+        if {data_stok[code]["nama"]} == {searched_dict["nama"]}:
+            return code
+
 def delete_stok():
 	print_system("-MENGHAPUS DATA STOK-")
 	nama = input("Masukkan Nama Makanan yang akan Dihapus : ")
-	result = searching_by_nama(nama)
-	if result:
+	code = return_code(nama)
+	if code:
 		respon = input(f"Yakin ingin menghapus {nama} (Y/N): ")
 		if verify_ans(respon):
+			del data_stok[code]
 			print("DATA telah dihapus.")
 		else:
 			print("DATA batal dihapus")
